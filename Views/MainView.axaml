@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ScheduleGenerator.Views.MainView">
+  <StackPanel>
+    
+    <TextBlock Classes="h1" Text="Главное"/>
+    
+    <StackPanel Classes="Input" Spacing="10">
+      <TextBlock Text="Выберите группу" VerticalAlignment="Center" Padding="10"/>
+      <ComboBox  Margin="0 15 0 15" Width="150">
+        <ComboBoxItem Content="Ain-1-21"/>
+        <ComboBoxItem Content="Ain-2-21"/> 
+        <ComboBoxItem Content="Ain-3-21"/>
+      </ComboBox>
+    </StackPanel>
+    <DataGrid Items="{Binding Schedule}"
+              CanUserReorderColumns="True"
+              CanUserSortColumns="False">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Пн" Width="*" Binding="{Binding Monday}"/> 
+        <DataGridTextColumn Header="Вт" Width="*" Binding="{Binding Tuesday}"/> 
+        <DataGridTextColumn Header="Ср" Width="*" Binding="{Binding Wednesday}"/> 
+        <DataGridTextColumn Header="ЧТ" Width="*" Binding="{Binding Thursday}"/> 
+        <DataGridTextColumn Header="Пт" Width="*" Binding="{Binding Friday}"/> 
+        <DataGridTextColumn Header="Сб" Width="*" Binding="{Binding Saturaday}"/> 
+      </DataGrid.Columns>
+    </DataGrid>
+  
+    <TextBlock Text="Если вам не нравиться расписание, то вы можете изменить его(дважды нажмите на колонку что вам не нравиться)" 
+               Classes="Option"
+               Margin="8"/>
+     <TextBlock Text="Или в настройках вы можете перегенерировать" Foreground="Gray"
+                Classes="Option"/>
+  </StackPanel>
+</UserControl>

@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ScheduleGenerator.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rxui="using:Avalonia.ReactiveUI"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ScheduleGenerator.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ScheduleGenerator"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaTitleBarHeightHint="50"
+        ExtendClientAreaToDecorationsHint="True"
+        >
+  
+  
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+  <Window.DataContext>
+    <vm:MainWindowViewModel/>
+  </Window.DataContext>
+
+  <Grid>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="180"/>
+      <ColumnDefinition  Width="*"/>
+    </Grid.ColumnDefinitions>
+    
+    
+    <ExperimentalAcrylicBorder Grid.Column="0">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+            BackgroundSource="Digger"
+            TintColor="Black"
+            TintOpacity="1"
+            MaterialOpacity="0.90" 
+      />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+
+    <ExperimentalAcrylicBorder Grid.Column="1">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+            BackgroundSource="Digger"
+            TintColor="Black"
+            TintOpacity="1"
+            MaterialOpacity="0.65"
+      />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+
+    <StackPanel Grid.Column="0"
+                Classes="Navmenu">
+      <RadioButton Content="Главное" Command="{Binding GoToMain}"/>
+      <RadioButton Content="Настройки" Command="{Binding GoToOption}"/>
+      <RadioButton Content="Традиции"/>
+    </StackPanel>
+
+    <ScrollViewer Grid.Column="1">
+      <rxui:RoutedViewHost Router="{Binding  Router}" Margin="10">
+        <rxui:RoutedViewHost.DefaultContent>
+          <TextBlock>
+            Привет
+          </TextBlock>
+        </rxui:RoutedViewHost.DefaultContent>
+      </rxui:RoutedViewHost>
+    </ScrollViewer>
+   
+  </Grid>
+
+</Window>
