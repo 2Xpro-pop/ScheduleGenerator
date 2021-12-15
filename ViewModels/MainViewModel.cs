@@ -13,25 +13,16 @@ namespace ScheduleGenerator.ViewModels
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; } = "main";
         public static readonly Random random = new Random();
-        public static readonly string[] loremIpsum = new string[] { 
-            "Математика", 
-            "Английский", 
-            "Немецкий",
-            "Языки прогаммирование",
-            "Вчк",
-            "Аисд",
-        };
-
-        public Models.Week[] Schedule { get; set; }
+        public Models.Week<string>[] Schedule { get; set; }
 
         public MainViewModel(IScreen screen)
         {
             HostScreen = screen;
-            Schedule = new Models.Week[8];
+            Schedule = new Models.Week<string>[8];
 
             for(int i=0; i < 8; i++ )
             {
-                Schedule[i] = new Models.Week();
+                Schedule[i] = new Models.Week<string>();
                 Schedule[i].Monday = LoremIpsumLesson();
                 Schedule[i].Tuesday = LoremIpsumLesson();
                 Schedule[i].Wednesday = LoremIpsumLesson();
@@ -44,7 +35,8 @@ namespace ScheduleGenerator.ViewModels
 
         public string LoremIpsumLesson()
         {
-            return loremIpsum[random.Next(6)];
+            var loremIpsum = new List<string>(App.Instance.Lessons);
+            return loremIpsum[random.Next(loremIpsum.Count)];
         }
 
     }

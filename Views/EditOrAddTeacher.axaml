@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="using:ScheduleGenerator"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ScheduleGenerator.Views.EditOrAddTeacher">
+  <StackPanel>
+    <TextBlock Classes="h1" Text="Настройте Учителя"/>
+    <TextBox Text="{Binding Name}" Watermark="Введите ваше имя" />
+    <TextBlock Classes="h2" Text="Выберите предмет что вы преподаете"/>
+    <ComboBox Items="{Binding Lessons}" Width="280" SelectedIndex="0" SelectedItem="{Binding SelectedLesson}"/>
+    <TextBlock Classes="h2" Text="Выберите часы(пары) которые вам НЕ удобны"/>
+    <DataGrid Items="{Binding BadTimes}"
+              CanUserSortColumns="False"
+              CanUserResizeColumns="False"
+              CanUserReorderColumns="False">
+      <DataGrid.Columns>
+        <DataGridCheckBoxColumn Header="1" Width="*" Binding="{Binding Monday}"/> 
+        <DataGridCheckBoxColumn Header="2" Width="*" Binding="{Binding Tuesday}"/> 
+        <DataGridCheckBoxColumn Header="3" Width="*" Binding="{Binding Wednesday}"/> 
+        <DataGridCheckBoxColumn Header="4" Width="*" Binding="{Binding Thursday}"/> 
+        <DataGridCheckBoxColumn Header="5" Width="*" Binding="{Binding Friday}"/> 
+        <DataGridCheckBoxColumn Header="6" Width="*" Binding="{Binding Saturaday}"/> 
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <StackPanel Classes="Input" Margin="0 25 0 0">
+      <Button Classes="Save" Width="100" Command="{Binding SaveTeacher}"/>
+      <Button Content="Отмена" Width="100" Command="{Binding Cancel}"/>
+    </StackPanel>
+    
+  </StackPanel>
+</UserControl>

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +13,6 @@ namespace ScheduleGenerator.Models
         /// <summary>
         /// BadTime считаеться плохим временем от 0 до 47
         /// </summary>
-        public int[] BadTimes { get; set; }
+        public ReadOnlyCollection<int> BadTimes { get; set; }
     }
 }

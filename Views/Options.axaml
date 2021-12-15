@@ -6,11 +6,85 @@
              x:Class="ScheduleGenerator.Views.Options">
 
   <StackPanel>
-    <Button>
-      <StackPanel Orientation="Horizontal">
-        <Path Data="{StaticResource add}" Fill="White" Margin="3"/>
-        <TextBlock Text="Добавить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
-      </StackPanel>
-    </Button>
+
+    <TextBlock Classes="h1" Text="Настройки"/>
+
+    <TextBlock Classes="h2" Text="Учителя"/>
+
+    <ListBox x:Name="teachers" Classes="Options" 
+             Items="{Binding Teachers}" 
+             SelectionChanged="TeacherSelectChanged"
+             SelectedItem="{Binding SelectedTeacher}">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+        <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    
+    <StackPanel Classes="Option">
+
+      <Button Command="{Binding AddTeacher}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource add}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Добавить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+      <Button Command="{Binding EditTeacher}" IsEnabled="{Binding CanEditTeacher}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource edit}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Изменить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+      <Button Classes="Remove" IsEnabled="{Binding CanRemoveTeacher}" Command="{Binding RemoveTeacher}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource remove}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Удалить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+    </StackPanel>
+
+    <TextBlock Classes="h2" Text="Группы"/>
+
+    <ListBox Classes="Options" 
+             Items="{Binding Groups}" 
+             SelectionChanged="GroupSelectChanged"
+             SelectedItem="{Binding SelectedGroup}">
+
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    
+    <StackPanel Classes="Option">
+
+      <Button Command="{Binding AddGroup}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource add}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Добавить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+      <Button Command="{Binding EditGroup}" IsEnabled="{Binding CanEditGroup}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource edit}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Изменить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+      <Button Classes="Remove" IsEnabled="{Binding CanRemoveGroup}" Command="{Binding RemoveGroup}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource remove}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Удалить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+    </StackPanel>
+
   </StackPanel>
 </UserControl>

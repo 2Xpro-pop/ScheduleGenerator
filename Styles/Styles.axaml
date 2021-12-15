@@ -15,19 +15,31 @@
     <Setter Property="TextAlignment" Value="Center"/>
     <Setter Property="TextWrapping" Value="Wrap" />
     <Setter Property="Width" Value="{Binding $parent.Width}"/>
+    <Setter Property="Margin" Value="15 0 0 0" />
   </Style>
 
   <Style Selector="TextBlock.h1">
-    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="FontSize" Value="24"/>
     <Setter Property="FontWeight" Value="Bold"/>
-    <Setter Property="Padding" Value="10"/>
-    <Setter Property="Margin" Value="0 0 0 15"/>
+    <Setter Property="Margin" Value="0 20 0 20"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
+  <Style Selector="TextBlock.h2">
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="Margin" Value="0 20 0 20"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
+  <Style Selector="StackPanel.Option">
+    <Setter Property="Orientation" Value="Horizontal"/>
+    <Setter Property="Spacing" Value="10"/>
   </Style>
 
   <Style Selector="StackPanel.Input">
     <Setter Property="Orientation" Value="Horizontal"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Spacing" Value="10"/>
   </Style>
 
   <Style Selector="StackPanel.Navmenu">
@@ -59,5 +71,42 @@
     <Setter Property="Background" Value="Gray"/>
   </Style>
 
-  
+  <Style Selector="ListBox.Options">
+    <Setter Property="Margin" Value="0 0 0 10"/>
+    <Setter Property="Height" Value="260" />
+  </Style>
+
+  <Style Selector="ListBox.Options /template/ ContentPresenter">
+    <Setter Property="CornerRadius" Value="10"/>
+  </Style>
+
+  <Style Selector="Button">
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+  </Style>
+
+  <Style Selector="Button:disabled /template/ ContentPresenter">
+    <Setter Property="Background" Value="#0b0b0b"/>
+  </Style>
+
+  <Style Selector="Button.Remove /template/ ContentPresenter">
+    <Setter Property="Background" Value="Red"/>
+  </Style>
+
+  <Style Selector="Button.Remove:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="DarkRed"/>
+  </Style>
+
+  <Style Selector="Button.Remove:disabled /template/ ContentPresenter">
+    <Setter Property="Background" Value="DarkRed"/>
+  </Style>
+
+  <Style Selector="Button.Save">
+    <Setter Property="Content" Value="Сохранить"/>
+    <Setter Property="Background" Value="Green"/>
+  </Style>
+
+  <Style Selector="Button.Save:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="DarkGreen"/>
+  </Style>
+
 </Styles>
