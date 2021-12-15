@@ -10,11 +10,10 @@
     
     <StackPanel Classes="Input">
       <TextBlock Text="Выберите группу" VerticalAlignment="Center" Padding="10"/>
-      <ComboBox  Margin="0 15 0 15" Width="150">
-        <ComboBoxItem Content="Ain-1-21"/>
-        <ComboBoxItem Content="Ain-2-21"/> 
-        <ComboBoxItem Content="Ain-3-21"/>
-      </ComboBox>
+      <ComboBox  Margin="0 15 0 15" 
+                 Width="150"
+                 SelectedIndex="0"
+                 Items="{Binding Groups}"/>
     </StackPanel>
     <DataGrid Items="{Binding Schedule}"
               CanUserReorderColumns="True"

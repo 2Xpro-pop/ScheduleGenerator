@@ -68,12 +68,17 @@ namespace ScheduleGenerator.ViewModels
 
         public void SaveGroup()
         {
+            if(string.IsNullOrWhiteSpace(Name))
+            {
+                App.ErrorMessageBox("Безимянная группа!", "Введите имя группы");
+                return;
+            }
             var edit = _groupEdit != null;
             if(!edit)
             {
                 _groupEdit = new Group();
             }
-            _groupEdit.Name = Name;
+            _groupEdit.Name = Name.Trim();
             _groupEdit.BadClock = BadClock();
             _groupEdit.NeedLessons = BuildNeedLessons();
             if(!edit)

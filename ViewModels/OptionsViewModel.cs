@@ -19,7 +19,10 @@ namespace ScheduleGenerator.ViewModels
         {
             screen.Router.NavigationStack.Clear();
             HostScreen = screen;
+            RemoveLessonCommand = ReactiveCommand.Create(RemoveLesson);
         }
+
+        public ReactiveCommand<Unit, Unit> RemoveLessonCommand { get; }
 
         public ObservableCollection<Teacher> Teachers
         {
@@ -93,8 +96,8 @@ namespace ScheduleGenerator.ViewModels
         public void RemoveGroup()
         {
             Groups.Remove(SelectedGroup);
-            CanEditTeacher = false;
-            CanRemoveTeacher = false;
+            CanRemoveGroup = false;
+            CanEditGroup = false;
         }
 
         public void AddGroup()
@@ -106,5 +109,58 @@ namespace ScheduleGenerator.ViewModels
         {
             HostScreen.Router.Navigate.Execute(new EditOrAddGroupVm(HostScreen, SelectedGroup));
         }
+
+        public ObservableCollection<string> Lessons
+        {
+            get;
+        } = App.Instance.Lessons;
+
+        public string SelectedLesson
+        {
+            get => _selectedLesson;
+            set => this.RaiseAndSetIfChanged(ref _selectedLesson, value, nameof(SelectedLesson));
+        }
+        private string _selectedLesson;
+
+        public string InputLesson 
+        {
+            get => _input;
+            set => this.RaiseAndSetIfChanged(ref _input, value, nameof(InputLesson));
+        }
+        private string _input;
+
+        public bool CanRemoveLesson
+        {
+            get => _canRemoveLesson;
+            set => this.RaiseAndSetIfChanged(ref _canRemoveLesson, value, nameof(CanRemoveGroup));
+        }
+        private bool _canRemoveLesson = false;
+
+        public void RemoveLesson()
+        {
+            
+            Lessons.Remove(SelectedLesson);
+        }
+
+        public void AddLesson()
+        {
+            if(Lessons.Contains(InputLesson))
+            {
+                App.ErrorMessageBox("Ошибка", "Уже есть такой урок");
+                return;
+            }
+            if(string.IsNullOrWhiteSpace(InputLesson))
+            {
+                App.ErrorMessageBox("Безимянный урок!", "Введите имя урока");
+                return;
+            }
+            Lessons.Add(InputLesson.Trim());
+        }
+
+        public void Generate()
+        {
+            App.Instance.Generate();
+        }
+
     }
 }

@@ -56,12 +56,17 @@ namespace ScheduleGenerator.ViewModels
         private string _selectedLesson;
         public void SaveTeacher()
         {
+            if(string.IsNullOrWhiteSpace(Name))
+            {
+                App.ErrorMessageBox("Безимянный учитель!", "Введите имя учителя");
+                return;
+            }
             var edit = _teacherEdit != null;
             if(!edit)
             {
                 _teacherEdit = new Teacher();
             }
-            _teacherEdit.Name = Name;
+            _teacherEdit.Name = Name.Trim();
             _teacherEdit.BadTimes = GetBadTimes();
             _teacherEdit.Lesson = SelectedLesson;
             if(!edit)

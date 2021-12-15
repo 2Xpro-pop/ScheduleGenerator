@@ -86,5 +86,36 @@
 
     </StackPanel>
 
+    <TextBlock Classes="h2" Text="Уроки"/>
+
+    <ListBox Classes="Options" 
+             Items="{Binding Lessons}" 
+             SelectedIndex="0"
+             SelectedItem="{Binding SelectedLesson}">
+    </ListBox>
+
+    <StackPanel Classes="Option">
+
+       <TextBox Watermark="Имя урока..." Text="{Binding InputLesson}" Width="170"/>
+
+      <Button Command="{Binding AddLesson}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource add}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Добавить урок" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+
+      <Button Classes="Remove" Command="{Binding RemoveLesson}">
+        <StackPanel Orientation="Horizontal">
+          <Path Data="{StaticResource remove}" Fill="White" Margin="3" Height="24"/>
+          <TextBlock Text="Удалить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+        </StackPanel>
+      </Button>
+      
+    </StackPanel>
+
+    <TextBlock Classes="h2" Text="Генерация"/>
+    <Button Command="{Binding Generate}" Content="Начать генерацию!" />
+
   </StackPanel>
 </UserControl>

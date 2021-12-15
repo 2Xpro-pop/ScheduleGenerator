@@ -23,15 +23,9 @@
     <vm:MainWindowViewModel/>
   </Window.DataContext>
 
-  <Grid>
-
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="180"/>
-      <ColumnDefinition  Width="*"/>
-    </Grid.ColumnDefinitions>
+  <Grid ColumnDefinitions="180,*" RowDefinitions="35,*">
     
-    
-    <ExperimentalAcrylicBorder Grid.Column="0">
+    <ExperimentalAcrylicBorder Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
             BackgroundSource="Digger"
@@ -42,7 +36,7 @@
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
 
-    <ExperimentalAcrylicBorder Grid.Column="1">
+    <ExperimentalAcrylicBorder Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
             BackgroundSource="Digger"
@@ -54,13 +48,14 @@
     </ExperimentalAcrylicBorder>
 
     <StackPanel Grid.Column="0"
+                Grid.Row = "1"
                 Classes="Navmenu">
       <RadioButton Content="Главное" Command="{Binding GoToMain}"/>
       <RadioButton Content="Настройки" Command="{Binding GoToOption}"/>
       <RadioButton Content="Традиции"/>
     </StackPanel>
-
-    <ScrollViewer Grid.Column="1">
+    <ScrollViewer Grid.Column="1"
+                  Grid.Row = "1">
       <rxui:RoutedViewHost Router="{Binding  Router}" Margin="10">
         <rxui:RoutedViewHost.DefaultContent>
           <TextBlock>

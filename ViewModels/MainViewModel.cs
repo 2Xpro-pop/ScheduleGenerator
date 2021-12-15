@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Text;
 using Avalonia.ReactiveUI;
 using System.Data;
 using ReactiveUI;
+using System.Linq;
 
 namespace ScheduleGenerator.ViewModels
 {
@@ -14,6 +16,8 @@ namespace ScheduleGenerator.ViewModels
         public string UrlPathSegment { get; } = "main";
         public static readonly Random random = new Random();
         public Models.Week<string>[] Schedule { get; set; }
+
+        public IEnumerable<string> Groups { get; } = App.Instance.Groups.Select( f => f.Name);
 
         public MainViewModel(IScreen screen)
         {

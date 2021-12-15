@@ -14,6 +14,27 @@ namespace ScheduleGenerator
     {
         public static App Instance { get; private set; }
 
+        public static void ErrorMessageBox(string title, string text)
+        {
+            MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow
+            (
+                title,
+                text,
+                icon: MessageBox.Avalonia.Enums.Icon.Error,
+                style: MessageBox.Avalonia.Enums.Style.DarkMode
+            ).Show();
+        }
+
+        public void Save()
+        {
+            
+        }
+
+        public void Generate()
+        {
+
+        }
+
         public override void Initialize()
         {
             Instance = this;
