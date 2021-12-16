@@ -17,6 +17,7 @@ namespace ScheduleGenerator.ViewModels
 
         public ReactiveCommand<Unit, IRoutableViewModel> GoToMain { get; }
         public ReactiveCommand<Unit, IRoutableViewModel> GoToOption { get; }
+        public ReactiveCommand<Unit, IRoutableViewModel> GoToTradition { get; }
 
         public MainWindowViewModel()
         {
@@ -25,6 +26,9 @@ namespace ScheduleGenerator.ViewModels
             );
             GoToOption = ReactiveCommand.CreateFromObservable(
                 () => Router.Navigate.Execute(new OptionsViewModel(this))
+            );
+            GoToTradition = ReactiveCommand.CreateFromObservable(
+                () => Router.Navigate.Execute(new TraditionsVm(this))
             );
         }
 

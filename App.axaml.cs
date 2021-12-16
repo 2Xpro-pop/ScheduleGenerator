@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using ScheduleGenerator.Models;
 using ScheduleGenerator.ViewModels;
 using ScheduleGenerator.Views;
+using ScheduleGenerator.Traditions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -87,6 +88,8 @@ namespace ScheduleGenerator
             new Teacher() { Name = "Lorem"},
             new Teacher() { Name = "Ipsum"},
         });
+
+        public AssemblyTraditions AssemblyTraditions { get; } = new AssemblyTraditions();
 
     }
 }

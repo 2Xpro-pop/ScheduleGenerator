@@ -24,18 +24,17 @@ namespace ScheduleGenerator.Views
             var a = (ViewModels.OptionsViewModel)DataContext;
             if((sender as ListBox).SelectedItem != null)
             {
-                a.CanRemoveTeacher = true;
-                a.CanEditTeacher = true;
+                ViewModel.CanRemoveTeacher = true;
+                ViewModel.CanEditTeacher = true;
             }
         }
 
         private void GroupSelectChanged(object sender, SelectionChangedEventArgs e)
         {
-            var a = (ViewModels.OptionsViewModel)DataContext;
             if((sender as ListBox).SelectedItem != null)
             {
-                a.CanEditGroup = true;
-                a.CanRemoveGroup = true;
+                ViewModel.CanEditGroup = true;
+                ViewModel.CanRemoveGroup = true;
             }
         }
     }

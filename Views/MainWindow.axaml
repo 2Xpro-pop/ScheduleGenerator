@@ -52,15 +52,23 @@
                 Classes="Navmenu">
       <RadioButton Content="Главное" Command="{Binding GoToMain}"/>
       <RadioButton Content="Настройки" Command="{Binding GoToOption}"/>
-      <RadioButton Content="Традиции"/>
+      <RadioButton Content="Традиции" Command="{Binding GoToTradition}" />
     </StackPanel>
     <ScrollViewer Grid.Column="1"
                   Grid.Row = "1">
-      <rxui:RoutedViewHost Router="{Binding  Router}" Margin="10">
+      <rxui:RoutedViewHost Router="{Binding  Router}" Margin="10" Classes="Welcome">
         <rxui:RoutedViewHost.DefaultContent>
-          <TextBlock>
-            Привет
-          </TextBlock>
+          <StackPanel>
+            <TextBlock Classes="h1" Text="Добро пожаловать!"/>
+            <TextBlock Text="Выберите одну из вкладок что бы продолжить."/>
+            <TextBlock Classes="h2" Text="Главное" />
+            <TextBlock Text="Здесь вы можете посмотреть расписание, или изменить некоторые ее элементы."/>
+            <TextBlock Classes="h2" Text="Настройки"/>
+            <TextBlock Text="В настройках вы можете генерировать расписание, изменять предметы, группы и учителей"/>
+            <TextBlock Classes="h2" Text="Традиция" />
+            <TextBlock Text="У каждого учебного заведениие есть своя традиция, возможно даже не глассная, будь то лекции по суботам или математика первым уроком"/>
+            <TextBlock Text="Во вкладке традиции вы можете устонавить или отключать традиции"/>
+          </StackPanel>
         </rxui:RoutedViewHost.DefaultContent>
       </rxui:RoutedViewHost>
     </ScrollViewer>

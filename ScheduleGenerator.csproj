@@ -15,5 +15,9 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.10" />
     <PackageReference Include="MessageBox.Avalonia" Version="1.7.1" />
+    <PackageReference Include="WebViewControl-Avalonia" Version="2.91.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\TraditonDocumentation\" />
   </ItemGroup>
 </Project>
