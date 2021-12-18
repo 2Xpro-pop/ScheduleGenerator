@@ -24,6 +24,7 @@ namespace ScheduleGenerator
                 icon: MessageBox.Avalonia.Enums.Icon.Error,
                 style: MessageBox.Avalonia.Enums.Style.DarkMode
             ).Show();
+            
         }
 
         public void Save()
