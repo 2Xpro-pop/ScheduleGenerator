@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Text;
 using Avalonia.ReactiveUI;
+using System.Diagnostics;
 using ReactiveUI;
 using ScheduleGenerator.Models;
 using Avalonia.Controls;
@@ -20,41 +21,21 @@ namespace ScheduleGenerator.ViewModels
 
         public string[] Bindings { get; set; }
 
-        public TraditionsMoreVm(IScreen screen, TraditionMarkup markup)
+        public TraditionsMoreVm(IScreen screen, ITradition tradition)
         {
             HostScreen = screen;
             var stack = new StackPanel() {Spacing = 5};
-            int valueIndex = 0;
             
-            foreach(int mark in markup.markUp)
+            foreach(var element in tradition.Markup)
             {
-                if(mark == TraditionMarkup.Text_H1)
+                var rendered = element.Render();
+                if(!string.IsNullOrWhiteSpace(element.Name) &&
+                    tradition.PythonScope.ContainsVariable($"observe_{element.Name}"))
                 {
-                    stack.Children.Add(
-                        new TextBlock() { Text = markup.values[valueIndex++], Classes = new Classes("h1") }
-                    );
+                    dynamic observe = tradition.PythonScope.GetVariable($"observe_{element.Name}");
+                    observe(rendered, this);
                 }
-
-                if(mark == TraditionMarkup.Text_H2)
-                {
-                    stack.Children.Add(
-                        new TextBlock() { Text = markup.values[valueIndex++], Classes = new Classes("h2") }
-                    );
-                }
-
-                if(mark == TraditionMarkup.Text)
-                {
-                    stack.Children.Add(
-                        new TextBlock() { Text = markup.values[valueIndex++] }
-                    );
-                }
-
-                if(mark == TraditionMarkup.TextBox)
-                {
-                    stack.Children.Add(
-                        new TextBox() { Watermark = markup.values[valueIndex++] }
-                    );
-                }
+                stack.Children.Add(rendered);
             }
             Control = stack;
         }

@@ -7,6 +7,7 @@ using Avalonia.ReactiveUI;
 using ReactiveUI;
 using ScheduleGenerator.Models;
 using Avalonia.Controls;
+using ScheduleGenerator.Traditions;
 
 namespace ScheduleGenerator.ViewModels
 {
@@ -21,14 +22,14 @@ namespace ScheduleGenerator.ViewModels
             HostScreen.Router.NavigationStack.Clear();
         }
 
-        public void Edit(string unique)
+        public void Edit(ITradition tradition)
         {
-            HostScreen.Router.Navigate.Execute( new TraditionsMoreVm(HostScreen, App.Instance.AssemblyTraditions.GetTraditionMarkUp(unique)));
+            HostScreen.Router.Navigate.Execute(new TraditionsMoreVm(HostScreen, tradition));
         }
 
-        public IEnumerable<TraditionMetaInfo> MetaInfos 
+        public IEnumerable<ITradition> MetaInfos 
         {
             get;
-        } = App.Instance.AssemblyTraditions.GetTraditionsMetaInfos();
+        } = App.Instance.AssemblyTraditions.Traditions;
     }
 }

@@ -14,10 +14,19 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.10" />
+    <PackageReference Include="IronPython" Version="3.4.0-alpha1" />
     <PackageReference Include="MessageBox.Avalonia" Version="1.7.1" />
     <PackageReference Include="WebViewControl-Avalonia" Version="2.91.12" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\TraditonDocumentation\" />
+    <ProjectReference Include="..\..\..\libs\StackInterpretator\StackMarkup.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Traditions\Freedom of Graphics\main.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Traditions\Freedom of Graphics\markup.stack">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
