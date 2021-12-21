@@ -5,6 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Views.GenerationView">
   <StackPanel>
-    <ProgressBar/>
+    <TextBlock Classes="h1" Text="Генерация...."/>
+    <ProgressBar Value="{Binding Progress}"/>
+    <TextBlock Classes="h2" Text="Текущее состояние:"/>
+    <TextBlock Text="{Binding State}"/>
+    <TextBlock Text="Вы можете отменить генерацию, или принять генерацию с текущими недочетами, если вам кажеться что генериция идет слишком долго."/>
+    <StackPanel Classes="Input">
+      <Button Classes="Remove" Content="Отменить" Command="{Binding Cancel}"/>
+      <Button Classes="Remove" Content="Принять"  Command="{Binding Apply}"/>
+    </StackPanel>
   </StackPanel>
 </UserControl>

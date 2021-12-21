@@ -159,7 +159,7 @@ namespace ScheduleGenerator.ViewModels
 
         public void Generate()
         {
-            App.Instance.Generate();
+            HostScreen.Router.Navigate.Execute( new GenerationVm(HostScreen));
         }
 
     }
