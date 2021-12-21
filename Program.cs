@@ -28,6 +28,7 @@ namespace ScheduleGenerator
             Locator.CurrentMutable.Register(() => new TraditionsView(), typeof(IViewFor<TraditionsVm>));
             Locator.CurrentMutable.Register(() => new TradiotionsDocView(), typeof(IViewFor<TraditionsDocVm>));
             Locator.CurrentMutable.Register(() => new TraditionMoreView(), typeof(IViewFor<TraditionsMoreVm>));
+            Locator.CurrentMutable.Register(() => new GenerationView(), typeof(IViewFor<GenerationVm>));
 
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
