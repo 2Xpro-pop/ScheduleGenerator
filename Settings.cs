@@ -35,5 +35,15 @@ namespace ScheduleGenerator
             }
         }
 
+        public async void Save()
+        {
+            await File.WriteAllTextAsync("settings.json", JsonConvert.SerializeObject(_settings, Formatting.Indented));
+        }
+
+        ~Settings()
+        {
+            File.WriteAllText("settings.json", JsonConvert.SerializeObject(_settings, Formatting.Indented));
+        }
+
     }
 }

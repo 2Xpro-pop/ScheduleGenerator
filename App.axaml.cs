@@ -6,8 +6,10 @@ using ScheduleGenerator.Models;
 using ScheduleGenerator.ViewModels;
 using ScheduleGenerator.Views;
 using ScheduleGenerator.Traditions;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Diagnostics;
 
 namespace ScheduleGenerator
 {
@@ -27,20 +29,31 @@ namespace ScheduleGenerator
             
         }
 
-        public void Save()
-        {
-            
-        }
-
-        public void Generate()
-        {
-
-        }
-
         public override void Initialize()
         {
             Instance = this;
+            if(File.Exists("data.json"))
+            {
+                var data = DataProvider.Load();
+                foreach(var group in data.Groups)
+                {
+                    Groups.Add(group);
+                }
+                foreach(var teacher in data.Teachers)
+                {
+                    Teachers.Add(teacher);
+                }
+                foreach(var lesson in data.Lessons)
+                {
+                    Lessons.Add(lesson);
+                }
+            }
             AvaloniaXamlLoader.Load(this);
+        }
+
+        public void Save()
+        {
+            DataProvider.Save(Groups.ToList<Group>(), Teachers.ToList<Teacher>(), Lessons.ToList<string>());
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -55,42 +68,25 @@ namespace ScheduleGenerator
 
             base.OnFrameworkInitializationCompleted();
         }
-
         public ObservableCollection<string> Lessons 
         {
             get;
-        } = new(new string[] { 
-                "Математика", 
-                "Английский", 
-                "Немецкий",
-                "Языки прогаммирование",
-                "Вчк",
-                "Аисд",
-            });
+        } = new();
         public ObservableCollection<Models.Group> Groups
         {
             get;
-        } = new(new Group[] 
-            {
-                new Group() { Name = "Min-1-21"},
-                new Group() { Name = "Ain-1-21"},
-                new Group() { Name = "Ain-2-21"},
-                new Group() { Name = "Ain-3-21"},
-                new Group() { Name = "Win-1-21"},
-            });
+        } = new();
 
         public ObservableCollection<Teacher> Teachers
         {
             get;
-        } =new(new Teacher[] 
-        {
-            new Teacher() { Name = "Arnold"},
-            new Teacher() { Name = "Bob"},
-            new Teacher() { Name = "Lorem"},
-            new Teacher() { Name = "Ipsum"},
-        });
+        } =new();
 
         public AssemblyTraditions AssemblyTraditions { get; } = new AssemblyTraditions();
+
+        // Только для традиций!
+        public Settings Settings { get; } = new Settings();
+
 
     }
 }

@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ProtoBuf;
+
 namespace ScheduleGenerator.Models
 {
+    [ProtoContract]
     public class Group
     {
         public string Name { get; set; }
         public Dictionary<string,int> NeedLessons { get; set; }
-
         /// <summary>
         /// BadClock считаеться плохим временем от 0 до 7
         /// </summary>

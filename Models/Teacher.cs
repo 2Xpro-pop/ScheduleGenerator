@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace ScheduleGenerator.Models
 {
+    [ProtoContract]
     public class Teacher
     {
         public string Name { get; set; }
