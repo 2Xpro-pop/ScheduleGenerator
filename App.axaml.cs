@@ -89,6 +89,10 @@ namespace ScheduleGenerator
         // Только для традиций!
         public Settings Settings { get; } = new Settings();
 
-        public ushort[]? Shedule { get; set;} = null;
+        public Dictionary<string, Week<string>[]>? Schedule 
+        { 
+            get; 
+            set; 
+        } = new Dictionary<string, Week<string>[]>();
     }
 }

@@ -1,4 +1,4 @@
-using System.Text;
+using System;
 using Avalonia.ReactiveUI;
 using ReactiveUI;
 using ScheduleGenerator.Models;
@@ -54,7 +54,21 @@ namespace ScheduleGenerator.ViewModels
                 Progress = Generator.FitnessMax;
             }
             Progress = Generator.FitnessMax;
-            App.Instance.Shedule = (Generator.BestChromosome as ShortArrayChromosome)?.Value;
+            if(BackgroundWorker.CancellationPending)
+            {
+                App.Instance.Schedule.Clear();
+                var span = new Span<ushort>((Generator.BestChromosome as ShortArrayChromosome)?.Value);
+                for(int i = 0; i < span.Length / 48; i++)
+                {
+                    var name = App.Instance.Groups[i].Name;
+                    App.Instance.Schedule.Add(
+                        App.Instance.Groups[i].Name, 
+                        new Week<string>[8]
+                    );
+                    BuildGeneration(span.Slice(i*48, 48), name);
+                }
+            }
+            
         }
 
         public void Cancel()
@@ -75,6 +89,51 @@ namespace ScheduleGenerator.ViewModels
                 System.Diagnostics.Trace.WriteLine(Progress);
             };
             BackgroundWorker.CancelAsync();
+        }
+
+        private void BuildGeneration(Span<ushort> shedule, string name)
+        {
+            var app = App.Instance;
+            var stringShedule = app.Schedule[name];
+            for(int i=0; i< 48; i++)
+            {
+                var lesson = shedule[i];
+                if(app.Teachers.Count > lesson)
+                {
+                    var teacher = app.Teachers[lesson];
+                    var day = lesson % 8;
+
+                    if(stringShedule[day] == null)
+                    {
+                        stringShedule[day] = new Week<string>();
+                    }
+
+                    if(lesson < 8)
+                    {
+                        stringShedule[day].Monday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(lesson < 16)
+                    {
+                        stringShedule[day].Tuesday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(lesson < 24)
+                    {
+                        stringShedule[day].Wednesday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(lesson < 32)
+                    {
+                        stringShedule[day].Thursday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(lesson < 40)
+                    {
+                        stringShedule[day].Friday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(lesson < 48)
+                    {
+                        stringShedule[day].Saturaday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                }
+            }
         }
 
     }
