@@ -6,11 +6,17 @@
              x:Class="ScheduleGenerator.Views.GenerationView">
   <StackPanel>
     <TextBlock Classes="h1" Text="Генерация...."/>
-    <ProgressBar Value="{Binding Progress}"/>
-    <TextBlock Classes="h2" Text="Текущее состояние:"/>
-    <TextBlock Text="{Binding State}"/>
-    <TextBlock Text="Вы можете отменить генерацию, или принять генерацию с текущими недочетами, если вам кажеться что генериция идет слишком долго."/>
-    <StackPanel Classes="Input">
+    <ProgressBar Minimum="0" Maximum="1" Value="{Binding Progress}"/>
+    <TextBlock Classes="h1" Margin="0 20 0 10" Text="FAQ"/>
+    <TextBlock Classes="h2" Text="Что за ползнунок сверху?"/>
+    <TextBlock Text="Возможно я вас запутал, но это не процент сколько времени осталось. Это процент выполнение всех требований"/>
+    <TextBlock Text="Дело в том что, предсказать сколько времени нужно точно нельзя, это сильно зависит от расписание."/>
+    <TextBlock Text="Потерпите немного, например генерация расписание для 6 груп занимает в среднем 200 секунд"/>
+    <TextBlock Classes="h2" Text="Почему я жду уже час, а она мне не выдала результатов?"/>
+    <TextBlock Text="Возможно причина в не удачной комбинации наложенных вами ограничений, и расписание не существует"/>
+    <TextBlock Text="Например вы устоновили две традиции, одна которое отвечает за равное количество дисциплин за дент, а другая настроение на меньшее количество дисциплин за день"/>
+    <TextBlock Classes="h2" Text="Вы можете отменить генерацию, или принять генерацию с текущими недочетами, если вам кажеться что генериция идет слишком долго."/>
+    <StackPanel Classes="Input" Spacing="10" Margin="0 20 0 0">
       <Button Classes="Remove" Content="Отменить" Command="{Binding Cancel}"/>
       <Button Classes="Remove" Content="Принять"  Command="{Binding Apply}"/>
     </StackPanel>

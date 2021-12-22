@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using ReactiveUI;
 using Avalonia.Controls.Primitives;
 using System.ComponentModel;
+using System;
 
 namespace ScheduleGenerator.Views
 {
@@ -19,12 +20,17 @@ namespace ScheduleGenerator.Views
         public override void EndInit()
         {
             base.EndInit();
-            ViewModel?.BackgroundWorker.RunWorkerAsync();
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+            ViewModel.BackgroundWorker.RunWorkerAsync();
+        }
+        
     }
 }

@@ -19,22 +19,56 @@ namespace ScheduleGenerator.ViewModels
 
         public IEnumerable<string> Groups { get; } = App.Instance.Groups.Select( f => f.Name);
 
+        public int SelectedIndex
+        {
+            get => _index;
+            set => this.RaiseAndSetIfChanged(ref _index, value, nameof(SelectedIndex));
+        }
+        private int _index = 0;
+
         public MainViewModel(IScreen screen)
         {
             HostScreen = screen;
             Schedule = new Models.Week<string>[8];
-
-            for(int i=0; i < 8; i++ )
+            var app = App.Instance;
+            if(app.Shedule == null)
             {
-                Schedule[i] = new Models.Week<string>();
-                Schedule[i].Monday = LoremIpsumLesson();
-                Schedule[i].Tuesday = LoremIpsumLesson();
-                Schedule[i].Wednesday = LoremIpsumLesson();
-                Schedule[i].Thursday = LoremIpsumLesson();
-                Schedule[i].Friday = LoremIpsumLesson();
-                Schedule[i].Saturaday = LoremIpsumLesson();
+                return;
             }
-
+            for(int i=0+(48*_index); i< 48*(1+_index); i++)
+            {
+                var lesson = app.Shedule[i];
+                if(app.Teachers.Count < lesson)
+                {
+                    var teacher = app.Teachers[lesson];
+                    var week = i % 48;
+                    var day = week % 8;
+                    if(week < 8)
+                    {
+                        Schedule[day].Monday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(week < 16)
+                    {
+                        Schedule[day].Tuesday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(week < 24)
+                    {
+                        Schedule[day].Wednesday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(week < 32)
+                    {
+                        Schedule[day].Thursday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(week < 40)
+                    {
+                        Schedule[day].Friday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                    else if(week < 48)
+                    {
+                        Schedule[day].Saturaday = $"{teacher.Lesson}({teacher.Name})";
+                    }
+                }
+            }
         }
 
         public string LoremIpsumLesson()

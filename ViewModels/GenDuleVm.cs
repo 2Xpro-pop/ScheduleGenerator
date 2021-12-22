@@ -7,12 +7,11 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
-using Accord.Genetic;
 
 namespace ScheduleGenerator.ViewModels
 {
     using Genetic;
-    public class GenerationVm: ViewModelBase, IRoutableViewModel
+    public class GenDuleVm: ViewModelBase, IRoutableViewModel
     {
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; } = "Generation";
@@ -32,7 +31,7 @@ namespace ScheduleGenerator.ViewModels
         }
         private string _state;
 
-        public GenerationVm(IScreen screen)
+        public GenDuleVm(IScreen screen)
         {
             HostScreen = screen;
             BackgroundWorker = new();
@@ -53,8 +52,6 @@ namespace ScheduleGenerator.ViewModels
                 Generator.RunEpoch();
                 Progress = Generator.FitnessMax;
             }
-            Progress = Generator.FitnessMax;
-            App.Instance.Shedule = (Generator.BestChromosome as ShortArrayChromosome)?.Value;
         }
 
         public void Cancel()
@@ -62,7 +59,6 @@ namespace ScheduleGenerator.ViewModels
             BackgroundWorker.RunWorkerCompleted += (a,b) =>
             {
                 HostScreen.Router.NavigateBack.Execute();
-                System.Diagnostics.Trace.WriteLine(Progress);
             };
             BackgroundWorker.CancelAsync();
         }
@@ -72,7 +68,6 @@ namespace ScheduleGenerator.ViewModels
             BackgroundWorker.RunWorkerCompleted += (a,b) =>
             {
                 HostScreen.Router.NavigateBack.Execute();
-                System.Diagnostics.Trace.WriteLine(Progress);
             };
             BackgroundWorker.CancelAsync();
         }

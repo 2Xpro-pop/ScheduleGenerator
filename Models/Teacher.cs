@@ -17,6 +17,6 @@ namespace ScheduleGenerator.Models
         /// BadTime считаеться плохим временем от 0 до 47
         /// </summary>
         public ReadOnlyCollection<int> BadTimes { get; set; }
-        public List<int> Conflicts { get; set; }
+        public List<int> Conflicts { get; set; } = new List<int>();
     }
 }

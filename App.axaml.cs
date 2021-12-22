@@ -7,6 +7,7 @@ using ScheduleGenerator.ViewModels;
 using ScheduleGenerator.Views;
 using ScheduleGenerator.Traditions;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
@@ -41,6 +42,7 @@ namespace ScheduleGenerator
                 }
                 foreach(var teacher in data.Teachers)
                 {
+                    teacher.Conflicts = new List<int>();
                     Teachers.Add(teacher);
                 }
                 foreach(var lesson in data.Lessons)
@@ -87,6 +89,6 @@ namespace ScheduleGenerator
         // Только для традиций!
         public Settings Settings { get; } = new Settings();
 
-
+        public ushort[]? Shedule { get; set;} = null;
     }
 }

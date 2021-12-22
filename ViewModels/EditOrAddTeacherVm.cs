@@ -96,27 +96,27 @@ namespace ScheduleGenerator.ViewModels
             {
                 if(BadTimes[i].Monday)
                 {
-                    badTimes.Add(0 + (i*6));
+                    badTimes.Add(0 + i);
                 }
                 if(BadTimes[i].Tuesday)
                 {
-                    badTimes.Add(1 + (i*6));
+                    badTimes.Add(8 + i);
                 }
                 if(BadTimes[i].Wednesday)
                 {
-                    badTimes.Add(2 + (i*6));
+                    badTimes.Add(16 + i);
                 }
                 if(BadTimes[i].Thursday)
                 {
-                    badTimes.Add(3 + (i*6));
+                    badTimes.Add(24 + i);
                 }
                 if(BadTimes[i].Friday)
                 {
-                    badTimes.Add(4 + (i*6));
+                    badTimes.Add(32 + i);
                 }
                 if(BadTimes[i].Saturaday)
                 {
-                    badTimes.Add(5 + (i*6));
+                    badTimes.Add(40 + i);
                 }
             }
 
@@ -134,12 +134,12 @@ namespace ScheduleGenerator.ViewModels
                 {
                     continue;
                 }
-                badTimes[i].Monday = _teacherEdit.BadTimes.Contains(0 + (i*6));
-                badTimes[i].Tuesday = _teacherEdit.BadTimes.Contains(1 + (i*6));
-                badTimes[i].Wednesday = _teacherEdit.BadTimes.Contains(2 + (i*6));
-                badTimes[i].Thursday = _teacherEdit.BadTimes.Contains(3 + (i*6));
-                badTimes[i].Friday = _teacherEdit.BadTimes.Contains(4 + (i*6));
-                badTimes[i].Saturaday = _teacherEdit.BadTimes.Contains(5 + (i*6));
+                badTimes[i].Monday = _teacherEdit.BadTimes.Contains(0 + i);
+                badTimes[i].Tuesday = _teacherEdit.BadTimes.Contains(8 + i);
+                badTimes[i].Wednesday = _teacherEdit.BadTimes.Contains(16 + i);
+                badTimes[i].Thursday = _teacherEdit.BadTimes.Contains(24 + i);
+                badTimes[i].Friday = _teacherEdit.BadTimes.Contains(32 + i);
+                badTimes[i].Saturaday = _teacherEdit.BadTimes.Contains(40 + i);
             }
 
             return badTimes;

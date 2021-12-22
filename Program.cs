@@ -23,6 +23,7 @@ namespace ScheduleGenerator
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
         {
+            Locator.CurrentMutable.Register(() => new GenerationView(), typeof(IViewFor<GenerationVm>));
             Locator.CurrentMutable.Register(() => new MainView(), typeof(IViewFor<MainViewModel>));
             Locator.CurrentMutable.Register(() => new Options(), typeof(IViewFor<OptionsViewModel>));
             Locator.CurrentMutable.Register(() => new EditOrAddTeacher(), typeof(IViewFor<EditOrAddTeacherVm>));
@@ -30,7 +31,7 @@ namespace ScheduleGenerator
             Locator.CurrentMutable.Register(() => new TraditionsView(), typeof(IViewFor<TraditionsVm>));
             Locator.CurrentMutable.Register(() => new TradiotionsDocView(), typeof(IViewFor<TraditionsDocVm>));
             Locator.CurrentMutable.Register(() => new TraditionMoreView(), typeof(IViewFor<TraditionsMoreVm>));
-            Locator.CurrentMutable.Register(() => new GenerationView(), typeof(IViewFor<GenerationVm>));
+            
 
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()

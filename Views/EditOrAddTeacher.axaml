@@ -16,12 +16,12 @@
               CanUserResizeColumns="False"
               CanUserReorderColumns="False">
       <DataGrid.Columns>
-        <DataGridCheckBoxColumn Header="1" Width="*" Binding="{Binding Monday}"/> 
-        <DataGridCheckBoxColumn Header="2" Width="*" Binding="{Binding Tuesday}"/> 
-        <DataGridCheckBoxColumn Header="3" Width="*" Binding="{Binding Wednesday}"/> 
-        <DataGridCheckBoxColumn Header="4" Width="*" Binding="{Binding Thursday}"/> 
-        <DataGridCheckBoxColumn Header="5" Width="*" Binding="{Binding Friday}"/> 
-        <DataGridCheckBoxColumn Header="6" Width="*" Binding="{Binding Saturaday}"/> 
+        <DataGridCheckBoxColumn Header="Пн" Width="*" Binding="{Binding Monday}"/> 
+        <DataGridCheckBoxColumn Header="Вт" Width="*" Binding="{Binding Tuesday}"/> 
+        <DataGridCheckBoxColumn Header="Ср" Width="*" Binding="{Binding Wednesday}"/> 
+        <DataGridCheckBoxColumn Header="Чт" Width="*" Binding="{Binding Thursday}"/> 
+        <DataGridCheckBoxColumn Header="ПТ" Width="*" Binding="{Binding Friday}"/> 
+        <DataGridCheckBoxColumn Header="Сб" Width="*" Binding="{Binding Saturaday}"/> 
       </DataGrid.Columns>
     </DataGrid>
 

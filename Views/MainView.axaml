@@ -12,8 +12,8 @@
       <TextBlock Text="Выберите группу" VerticalAlignment="Center" Padding="10"/>
       <ComboBox  Margin="0 15 0 15" 
                  Width="150"
-                 SelectedIndex="0"
-                 Items="{Binding Groups}"/>
+                 Items="{Binding Groups}"
+                 SelectedIndex="{Binding SelectedIndex}"/>
     </StackPanel>
     <DataGrid Items="{Binding Schedule}"
               CanUserReorderColumns="True"

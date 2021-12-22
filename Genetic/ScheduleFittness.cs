@@ -12,7 +12,7 @@ namespace ScheduleGenerator.Genetic
         public const int eps = 1000;
         public ScheduleFittness(ScheduleOptions options)
         {
-
+            Options = options;
         }
 
         public double Evaluate(IChromosome chromosome)
