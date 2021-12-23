@@ -42,8 +42,9 @@ namespace ScheduleGenerator.ViewModels
             }
             catch
             {
-                App.ErrorMessageBox("Ошибка", "Ошибка традиции");
-                screen.Router.NavigateBack.Execute();
+                App.ErrorMessageBox("Ошибка", "Ошибка традиции", 
+                    () => screen.Router.NavigateBack.Execute()
+                );
             }
         }
     }

@@ -5,29 +5,33 @@ using Avalonia.Markup.Xaml;
 using ScheduleGenerator.Models;
 using ScheduleGenerator.ViewModels;
 using ScheduleGenerator.Views;
+using ScheduleGenerator.Windows;
 using ScheduleGenerator.Traditions;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
-using System.Diagnostics;
+using System.Media;
 
 namespace ScheduleGenerator
 {
     public class App : Application
     {
         public static App Instance { get; private set; }
+        private static Window _mainWindow;
 
-        public static void ErrorMessageBox(string title, string text)
+        public static async void ErrorMessageBox(string title, string text, Action? onDialogEnd = null)
         {
-            MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow
-            (
-                title,
-                text,
-                icon: MessageBox.Avalonia.Enums.Icon.Error,
-                style: MessageBox.Avalonia.Enums.Style.DarkMode
-            ).Show();
-            
+            var error = new ErrorMessage();
+            error.ViewModel = new ErrorMessageViewModel()
+            {
+                Text = text,
+                Title = title,
+            };
+            SystemSounds.Beep.Play();
+            await error.ShowDialog(_mainWindow);
+            onDialogEnd?.Invoke();
         }
 
         public override void Initialize()
@@ -70,6 +74,7 @@ namespace ScheduleGenerator
                 {
                     DataContext = new MainWindowViewModel(),
                 };
+                _mainWindow = desktop.MainWindow;
             }
 
             base.OnFrameworkInitializationCompleted();

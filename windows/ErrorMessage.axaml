@@ -4,6 +4,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ScheduleGenerator.Windows.ErrorMessage"
-        Title="ErrorMessage">
-  Welcome to Avalonia!
+        Title="{Binding Title}"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        CanResize="False"
+        Width="450"
+        Height="180"
+        WindowStartupLocation="CenterOwner">
+  <Panel>
+      <ExperimentalAcrylicBorder IsHitTestVisible="False">
+          <ExperimentalAcrylicBorder.Material>
+              <ExperimentalAcrylicMaterial
+                  BackgroundSource="Digger"
+                  TintColor="Black"
+                  TintOpacity="1"
+                  MaterialOpacity="0.65" />
+          </ExperimentalAcrylicBorder.Material>
+      </ExperimentalAcrylicBorder>
+      <StackPanel VerticalAlignment="Center" Spacing="8">
+          <StackPanel Classes="Input" HorizontalAlignment="Center">
+              <Path Data="{StaticResource warning}" Fill="Red"/>
+              <TextBlock Text="{Binding Text}"  VerticalAlignment="Center"/>
+          </StackPanel>
+          <StackPanel Classes="Input" HorizontalAlignment="Center">
+              <Button Content="Ok" Width="160" Click="OkClick"/>
+          </StackPanel>
+      </StackPanel>
+  </Panel>
 </Window>
