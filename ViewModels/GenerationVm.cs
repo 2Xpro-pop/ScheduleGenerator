@@ -32,6 +32,8 @@ namespace ScheduleGenerator.ViewModels
         }
         private string _state;
 
+        private bool _apply = false;
+
         public GenerationVm(IScreen screen)
         {
             HostScreen = screen;
@@ -54,19 +56,30 @@ namespace ScheduleGenerator.ViewModels
                 Progress = Generator.FitnessMax;
             }
             Progress = Generator.FitnessMax;
-            if(BackgroundWorker.CancellationPending)
+            if(!BackgroundWorker.CancellationPending || _apply)
             {
                 App.Instance.Schedule.Clear();
                 var span = new Span<ushort>((Generator.BestChromosome as ShortArrayChromosome)?.Value);
                 for(int i = 0; i < span.Length / 48; i++)
                 {
                     var name = App.Instance.Groups[i].Name;
-                    App.Instance.Schedule.Add(
+                    var shedule = App.Instance.Schedule;
+                    shedule.Add(
                         App.Instance.Groups[i].Name, 
                         new Week<string>[8]
                     );
-                    BuildGeneration(span.Slice(i*48, 48), name);
+                    for(int week=0; week < 8; week++)
+                    {
+                        shedule[name][week] = new Week<string>(); 
+                    }
+                    App.Instance.Schedule = shedule;
+                    
+                    BuildGeneration(span.Slice(i*48, 48), shedule[name]);
                 }
+                BackgroundWorker.RunWorkerCompleted += (a,b) =>
+                {
+                    HostScreen.Router.NavigateBack.Execute();
+                };
             }
             
         }
@@ -83,6 +96,7 @@ namespace ScheduleGenerator.ViewModels
 
         public void Apply()
         {
+            _apply = true;
             BackgroundWorker.RunWorkerCompleted += (a,b) =>
             {
                 HostScreen.Router.NavigateBack.Execute();
@@ -91,10 +105,9 @@ namespace ScheduleGenerator.ViewModels
             BackgroundWorker.CancelAsync();
         }
 
-        private void BuildGeneration(Span<ushort> shedule, string name)
+        private void BuildGeneration(Span<ushort> shedule, Week<string>[] stringShedule)
         {
             var app = App.Instance;
-            var stringShedule = app.Schedule[name];
             for(int i=0; i< 48; i++)
             {
                 var lesson = shedule[i];
@@ -103,32 +116,27 @@ namespace ScheduleGenerator.ViewModels
                     var teacher = app.Teachers[lesson];
                     var day = lesson % 8;
 
-                    if(stringShedule[day] == null)
-                    {
-                        stringShedule[day] = new Week<string>();
-                    }
-
-                    if(lesson < 8)
+                    if(i < 8)
                     {
                         stringShedule[day].Monday = $"{teacher.Lesson}({teacher.Name})";
                     }
-                    else if(lesson < 16)
+                    else if(i < 16)
                     {
                         stringShedule[day].Tuesday = $"{teacher.Lesson}({teacher.Name})";
                     }
-                    else if(lesson < 24)
+                    else if(i < 24)
                     {
                         stringShedule[day].Wednesday = $"{teacher.Lesson}({teacher.Name})";
                     }
-                    else if(lesson < 32)
+                    else if(i < 32)
                     {
                         stringShedule[day].Thursday = $"{teacher.Lesson}({teacher.Name})";
                     }
-                    else if(lesson < 40)
+                    else if(i < 40)
                     {
                         stringShedule[day].Friday = $"{teacher.Lesson}({teacher.Name})";
                     }
-                    else if(lesson < 48)
+                    else if(i < 48)
                     {
                         stringShedule[day].Saturaday = $"{teacher.Lesson}({teacher.Name})";
                     }

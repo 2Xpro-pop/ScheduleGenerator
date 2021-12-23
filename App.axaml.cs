@@ -49,13 +49,17 @@ namespace ScheduleGenerator
                 {
                     Lessons.Add(lesson);
                 }
+                foreach(var keyValue in data.Schedule)
+                {
+                    Schedule.Add(keyValue.Key, keyValue.Value);
+                }
             }
             AvaloniaXamlLoader.Load(this);
         }
 
         public void Save()
         {
-            DataProvider.Save(Groups.ToList<Group>(), Teachers.ToList<Teacher>(), Lessons.ToList<string>());
+            DataProvider.Save(Groups.ToList<Group>(), Teachers.ToList<Teacher>(), Lessons.ToList<string>(), Schedule);
         }
 
         public override void OnFrameworkInitializationCompleted()

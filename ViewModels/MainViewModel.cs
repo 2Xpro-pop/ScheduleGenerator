@@ -39,8 +39,18 @@ namespace ScheduleGenerator.ViewModels
         public MainViewModel(IScreen screen)
         {
             HostScreen = screen;
-            Schedule = App.Instance.Schedule[Groups[0]];
-            Schedule = Schedule ?? GetNull();
+            try
+            {
+                Schedule = App.Instance.Schedule[Groups[0]];
+            }
+            catch
+            {
+                
+            }
+            finally
+            {
+                Schedule = Schedule ?? GetNull();
+            }
         }
 
         public Models.Week<string>[] GetNull()

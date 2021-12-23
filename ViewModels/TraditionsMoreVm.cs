@@ -25,19 +25,26 @@ namespace ScheduleGenerator.ViewModels
         {
             HostScreen = screen;
             var stack = new StackPanel() {Spacing = 5};
-            
-            foreach(var element in tradition.Markup)
+            try
             {
-                var rendered = element.Render();
-                if(!string.IsNullOrWhiteSpace(element.Name) &&
-                    tradition.PythonScope.ContainsVariable($"observe_{element.Name}"))
+                foreach(var element in tradition.Markup)
                 {
-                    dynamic observe = tradition.PythonScope.GetVariable($"observe_{element.Name}");
-                    observe(rendered, this);
+                    var rendered = element.Render();
+                    if(!string.IsNullOrWhiteSpace(element.Name) &&
+                        tradition.PythonScope.ContainsVariable($"observe_{element.Name}"))
+                    {
+                        dynamic observe = tradition.PythonScope.GetVariable($"observe_{element.Name}");
+                        observe(rendered, this);
+                    }
+                    stack.Children.Add(rendered);
                 }
-                stack.Children.Add(rendered);
+                Control = stack;
             }
-            Control = stack;
+            catch
+            {
+                App.ErrorMessageBox("Ошибка", "Ошибка традиции");
+                screen.Router.NavigateBack.Execute();
+            }
         }
     }
 }
