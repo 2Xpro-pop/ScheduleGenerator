@@ -39,7 +39,7 @@ namespace ScheduleGenerator.Genetic
                 bool ok = false;
                 App.ErrorMessageBox(
                     "", 
-                    $"Ошибка традиции, ошибка вызвана '{exc.Tradition.Name}', дальше эта традиция будет игнорироввться",
+                    $"Ошибка традиции, ошибка вызвана '{exc.Tradition.Name}', дальше эта традиция будет игнорироваться",
                     () => ok = true
                 );
                 while(!ok)

@@ -5,11 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ProtoBuf;
-
 namespace ScheduleGenerator.Models
 {
-    [ProtoContract]
     public class Group
     {
         public string Name { get; set; }
