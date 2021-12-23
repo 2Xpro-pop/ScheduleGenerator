@@ -6,6 +6,18 @@
         </Border>
     </Design.PreviewWith>
 
+  <Style Selector="ContentControl.ScrollStack">
+    <Setter Property="ContentTemplate">
+      <DataTemplate>
+        <ScrollViewer>
+          <StackPanel>
+            <ContentControl Content="{Binding Content}"/>
+          </StackPanel>
+        </ScrollViewer>
+      </DataTemplate>
+    </Setter>
+  </Style>
+
   <Style Selector="TextBlock">
     <Setter Property="Foreground" Value="White"/>
     <Setter Property="TextWrapping" Value="Wrap"/>

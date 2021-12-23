@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Views.MainView">
+  <ScrollViewer>
   <StackPanel>
     
     <TextBlock Classes="h1" Text="Главное"/>
@@ -34,4 +35,5 @@
      <TextBlock Text="Или в настройках вы можете перегенерировать" Foreground="Gray"
                 Classes="Option"/>
   </StackPanel>
+  </ScrollViewer>
 </UserControl>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Views.GenerationView">
+  <ScrollViewer>
   <StackPanel>
     <TextBlock Classes="h1" Text="Генерация...."/>
     <ProgressBar Minimum="0" Maximum="1" Value="{Binding Progress}"/>
@@ -21,4 +22,5 @@
       <Button Classes="Remove" Content="Принять"  Command="{Binding Apply}"/>
     </StackPanel>
   </StackPanel>
+  </ScrollViewer>
 </UserControl>

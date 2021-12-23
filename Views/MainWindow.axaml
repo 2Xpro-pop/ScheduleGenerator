@@ -54,9 +54,8 @@
       <RadioButton Content="Настройки" Command="{Binding GoToOption}"/>
       <RadioButton Content="Традиции" Command="{Binding GoToTradition}" />
     </StackPanel>
-    <ScrollViewer Grid.Column="1"
-                  Grid.Row = "1">
-      <rxui:RoutedViewHost Router="{Binding  Router}" Margin="10" Classes="Welcome">
+      <rxui:RoutedViewHost Router="{Binding  Router}" Margin="10" Classes="Welcome"
+                           Grid.Column="1" Grid.Row="1">
         <rxui:RoutedViewHost.DefaultContent>
           <StackPanel>
             <TextBlock Classes="h1" Text="Добро пожаловать!"/>
@@ -71,7 +70,6 @@
           </StackPanel>
         </rxui:RoutedViewHost.DefaultContent>
       </rxui:RoutedViewHost>
-    </ScrollViewer>
    
   </Grid>
 

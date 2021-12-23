@@ -17,6 +17,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceInclude Source="/Resources/Icons.axaml"/>
+        <ResourceInclude Source="/Resources/BasicResources.axaml"/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>

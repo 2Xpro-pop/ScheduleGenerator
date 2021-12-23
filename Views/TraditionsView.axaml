@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Views.TraditionsView">
+  <ScrollViewer>
   <StackPanel>
     <TextBlock Classes="h1" Text="Традиции"/>
     <TextBlock Classes="h2" Text="Устоновленные традиции:"/>
@@ -30,4 +31,5 @@
       </ItemsControl.DataTemplates>
     </ItemsControl>
   </StackPanel>
+  </ScrollViewer>
 </UserControl>

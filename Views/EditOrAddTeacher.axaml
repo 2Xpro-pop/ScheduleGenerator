@@ -5,6 +5,7 @@
              xmlns:local="using:ScheduleGenerator"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Views.EditOrAddTeacher">
+  <ScrollViewer>
   <StackPanel>
     <TextBlock Classes="h1" Text="Настройте Учителя"/>
     <TextBox Text="{Binding Name}" Watermark="Введите ваше имя" />
@@ -31,4 +32,5 @@
     </StackPanel>
     
   </StackPanel>
+  </ScrollViewer>
 </UserControl>

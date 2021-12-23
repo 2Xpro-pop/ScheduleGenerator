@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Views.TraditionMoreView">
+  <ScrollViewer>
   <StackPanel>
     <TextBlock Text="Настройки традиции" Classes="h1"/>
     <ContentControl Content="{Binding Control}"/>
   </StackPanel>
+  </ScrollViewer>
 </UserControl>
