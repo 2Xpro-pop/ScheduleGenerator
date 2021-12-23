@@ -59,6 +59,8 @@ namespace ScheduleGenerator.ViewModels
             if(!BackgroundWorker.CancellationPending || _apply)
             {
                 App.Instance.Schedule.Clear();
+                var arr = (Generator.BestChromosome as ShortArrayChromosome)?.Value;
+                System.Diagnostics.Trace.WriteLine(string.Join(",", arr));
                 var span = new Span<ushort>((Generator.BestChromosome as ShortArrayChromosome)?.Value);
                 for(int i = 0; i < span.Length / 48; i++)
                 {
@@ -114,31 +116,31 @@ namespace ScheduleGenerator.ViewModels
                 if(app.Teachers.Count > lesson)
                 {
                     var teacher = app.Teachers[lesson];
-                    var day = lesson % 8;
+                    var lessonOrder = i % 8;
 
                     if(i < 8)
                     {
-                        stringShedule[day].Monday = $"{teacher.Lesson}({teacher.Name})";
+                        stringShedule[lessonOrder].Monday = $"{teacher.Lesson}({teacher.Name})";
                     }
                     else if(i < 16)
                     {
-                        stringShedule[day].Tuesday = $"{teacher.Lesson}({teacher.Name})";
+                        stringShedule[lessonOrder].Tuesday = $"{teacher.Lesson}({teacher.Name})";
                     }
                     else if(i < 24)
                     {
-                        stringShedule[day].Wednesday = $"{teacher.Lesson}({teacher.Name})";
+                        stringShedule[lessonOrder].Wednesday = $"{teacher.Lesson}({teacher.Name})";
                     }
                     else if(i < 32)
                     {
-                        stringShedule[day].Thursday = $"{teacher.Lesson}({teacher.Name})";
+                        stringShedule[lessonOrder].Thursday = $"{teacher.Lesson}({teacher.Name})";
                     }
                     else if(i < 40)
                     {
-                        stringShedule[day].Friday = $"{teacher.Lesson}({teacher.Name})";
+                        stringShedule[lessonOrder].Friday = $"{teacher.Lesson}({teacher.Name})";
                     }
                     else if(i < 48)
                     {
-                        stringShedule[day].Saturaday = $"{teacher.Lesson}({teacher.Name})";
+                        stringShedule[lessonOrder].Saturaday = $"{teacher.Lesson}({teacher.Name})";
                     }
                 }
             }
