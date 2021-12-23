@@ -16,6 +16,5 @@ namespace ScheduleGenerator.Traditions
         string Name { get; }
         string Description { get; }
         ScriptScope PythonScope { get; }
-        
     }
 }

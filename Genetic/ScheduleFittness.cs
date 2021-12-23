@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using Accord.Genetic;
 
@@ -19,14 +20,33 @@ namespace ScheduleGenerator.Genetic
         {
             ClearAllConflicts();
 
-            Span<ushort> shortArray = new Span<ushort>(((ShortArrayChromosome)chromosome).Value);
+            ushort[] shortArray = ((ShortArrayChromosome)chromosome).Value; 
+            Span<ushort> spanArray = new Span<ushort>(shortArray);
             double result = 0;
 
             for(int i=0; i < Options.groups.Count; i++)
             {
-                result += EvaluateSchedule(shortArray.Slice(i * 48, 48), Options.groups[i]);
+                result += EvaluateSchedule(spanArray.Slice(i * 48, 48), Options.groups[i]);
             }
             result /= Options.groups.Count;
+            try
+            {
+                result += App.Instance.AssemblyTraditions.CountPoints(shortArray);
+                result /= 2;
+            }
+            catch (Traditions.TraditonException exc)
+            {
+                bool ok = false;
+                App.ErrorMessageBox(
+                    "", 
+                    $"Ошибка традиции, ошибка вызвана '{exc.Tradition.Name}', дальше эта традиция будет игнорироввться",
+                    () => ok = true
+                );
+                while(!ok)
+                {
+                    Thread.Sleep(50);
+                }
+            }
 
             return result;
         }
