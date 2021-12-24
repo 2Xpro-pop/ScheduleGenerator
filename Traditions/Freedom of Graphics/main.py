@@ -24,5 +24,5 @@ def observe_open_doc(element, viewModel):
 def click_open_doc(viewModel):
     psi = ProcessStartInfo()
     psi.UseShellExecute = True
-    psi.FileName = "https://github.com/2Xpro-pop/ScheduleGenerator/new/master?readme=1#%D1%82%D1%80%D0%B0%D0%B4%D0%B8%D1%86%D0%B8%D0%B8"
+    psi.FileName = "https://github.com/2Xpro-pop/ScheduleGenerator/tree/master#%D1%82%D1%80%D0%B0%D0%B4%D0%B8%D1%86%D0%B8%D0%B8"
     Process.Start(psi)
