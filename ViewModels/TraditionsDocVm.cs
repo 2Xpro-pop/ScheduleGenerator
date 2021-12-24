@@ -6,7 +6,6 @@ using Avalonia.ReactiveUI;
 using ReactiveUI;
 using ScheduleGenerator.Models;
 using Avalonia.Controls;
-using WebViewControl;
 
 namespace ScheduleGenerator.ViewModels
 {
