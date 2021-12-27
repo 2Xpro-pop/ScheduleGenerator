@@ -104,7 +104,7 @@ def count_point(schedule):
 
 Все теги в рендериться в Avalonia Control их свойства можете прочитать [здесь](https://docs.avaloniaui.net/docs/controls)
 
-### Бозовый тег
+### Базовый тег
 У всех тегов есть свойтса Content, Style, Name
 
 Свойства style работыет на данный момент только с тегам text и это h1 и h2
