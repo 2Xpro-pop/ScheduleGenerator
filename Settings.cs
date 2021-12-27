@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ScheduleGenerator
 {
-    public class Settings
+    public class Settings: IDict
     {
         private readonly Dictionary<string, object> _settings;
 

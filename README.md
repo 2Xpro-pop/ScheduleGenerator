@@ -129,14 +129,13 @@ from System.IO import *
 from System.Diagnostics import *
 from ScheduleGenerator.ViewModels import *
 
+import webbrowser
+
 def observe_my_button(element, viewModel):
     element.Click += lambda x,y : click_open_doc(viewModel) 
 
 def click_open_doc(viewModel):
-    psi = ProcessStartInfo()
-    psi.UseShellExecute = True
-    psi.FileName = "https://github.com/2Xpro-pop/ScheduleGenerator/new/master?readme=1#%D1%82%D1%80%D0%B0%D0%B4%D0%B8%D1%86%D0%B8%D0%B8"
-    Process.Start(psi)
+    webbrowser.open("https://github.com/2Xpro-pop/ScheduleGenerator/tree/master#%D1%82%D1%80%D0%B0%D0%B4%D0%B8%D1%86%D0%B8%D0%B8")
 ```
 
 Тег name ищет в main.py(или в других импортируемых модулей) функцию observe_{name}(a,b) где "a" это элемент рендера, а "b" ..... в принципе по хорошему вы не должны знать)  
