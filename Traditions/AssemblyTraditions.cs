@@ -16,12 +16,10 @@ namespace ScheduleGenerator.Traditions
         {
             LoadTriditions();
         }
-
         public void Refresh()
         {
             LoadTriditions();
-        }
-        
+        }       
         private void LoadTriditions()
         {
             var directories = Directory.GetDirectories("Traditions");
@@ -42,7 +40,6 @@ namespace ScheduleGenerator.Traditions
                     
             }
         }
-
         //Возвращает значение от 0 до 1
         public double CountPoints(ushort[] schedule)
         {
@@ -73,6 +70,5 @@ namespace ScheduleGenerator.Traditions
             }
             return points / (Traditions.Count-ErrorTraditions.Count);
         }
-
     }
 }

@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+
+using Microsoft.Scripting.Hosting;
+
+using Newtonsoft.Json;
+
+namespace ScheduleGenerator.Traditions
+{
+    public class TraditionOnlyInfo : ITradition
+    {
+        [JsonIgnore]
+        public IEnumerable<BaseMarkup> Markup { get => throw new NotSupportedException(); }
+        public string Name { get; } = "Not defined";
+        public string Description { get; } = "Not defined";
+        public string Id { get; } = string.Empty;
+        [JsonIgnore]
+        public ScriptScope PythonScope { get => throw new NotSupportedException();  } 
+
+        public TraditionOnlyInfo(string name, string description, string id)
+        {
+            Name = name;
+            Description = description;
+            Id = id;
+        }
+
+        public void Refresh()
+        {
+            throw new NotSupportedException();
+        }
+
+    }
+}

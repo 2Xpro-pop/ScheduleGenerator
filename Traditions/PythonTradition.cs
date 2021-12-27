@@ -34,9 +34,9 @@ namespace ScheduleGenerator.Traditions
             _markupPath = markupPath;
             _pythonPath = pythonPath;
 
-            LoadFiles();
+            PythonScope.SetVariable("__id__", id);
 
-            PythonScope.SetVariable("__id__",id);
+            LoadFiles();
         }
 
         public void Refresh() => LoadFiles();

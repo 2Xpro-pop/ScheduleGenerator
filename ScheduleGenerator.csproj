@@ -10,11 +10,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Accord.Genetic" Version="3.8.2-alpha" />
-    <PackageReference Include="Avalonia" Version="0.10.10" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
+    <PackageReference Include="Avalonia" Version="0.10.11" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.11" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.10" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.10" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.11" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.11" />
     <PackageReference Include="IronPython" Version="3.4.0-alpha1" />
     <PackageReference Include="IronPython.StdLib" Version="3.4.0-alpha1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -23,6 +23,9 @@
     <ProjectReference Include="..\..\..\libs\StackInterpretator\StackMarkup.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="references.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Traditions\Freedom of Graphics\main.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

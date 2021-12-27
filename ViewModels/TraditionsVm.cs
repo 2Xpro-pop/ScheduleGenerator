@@ -27,7 +27,7 @@ namespace ScheduleGenerator.ViewModels
             HostScreen.Router.Navigate.Execute(new TraditionsMoreVm(HostScreen, tradition));
         }
 
-        public IEnumerable<ITradition> MetaInfos 
+        public ObservableCollection<ITradition> MetaInfos 
         {
             get;
         } = App.Instance.AssemblyTraditions.Traditions;
