@@ -20,28 +20,39 @@ namespace ScheduleGenerator.Traditions
         {
             python = Python.CreateEngine();
             python.Runtime.Globals.SetVariable("App", App.Instance);
-            
         }
 
         public IEnumerable<BaseMarkup> Markup { get; private set; }
         public string Name { get; private set; } = "Not defined";
         public string Description { get; private set; } = "Not defined";
-        public ScriptScope PythonScope { get; private set; }
+        public ScriptScope PythonScope { get; private set; } = python.CreateScope();
+        private readonly string _markupPath;
+        private readonly string _pythonPath;
 
-        public PythonTradition(string markupPath, string pythonPath)
+        public PythonTradition(string markupPath, string pythonPath, int id)
         {
-            PythonScope = python.CreateScope();
+            _markupPath = markupPath;
+            _pythonPath = pythonPath;
+
+            LoadFiles();
+
+            PythonScope.SetVariable("__id__",id);
+        }
+
+        public void Refresh() => LoadFiles();
+        private void LoadFiles()
+        {
             var pathes = python.GetSearchPaths();
-            pathes.Add(Directory.GetDirectoryRoot(pythonPath));
+            pathes.Add(Directory.GetDirectoryRoot(_pythonPath));
             python.SetSearchPaths(pathes);
-            PythonScope = python.ExecuteFile(pythonPath, PythonScope);
+            PythonScope = python.ExecuteFile(_pythonPath, PythonScope);
 
             var doc = BaseMarkup.Document;
-            doc.Load(markupPath);
+            doc.Load(_markupPath);
 
             Markup = doc.Elements.Cast<BaseMarkup>();
 
-            pathes.Remove(Directory.GetDirectoryRoot(pythonPath));
+            pathes.Remove(Directory.GetDirectoryRoot(_pythonPath));
             python.SetSearchPaths(pathes);
 
             if(PythonScope.ContainsVariable("__name__"))

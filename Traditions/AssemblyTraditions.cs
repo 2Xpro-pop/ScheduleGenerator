@@ -16,6 +16,11 @@ namespace ScheduleGenerator.Traditions
         {
             LoadTriditions();
         }
+
+        public void Refresh()
+        {
+            LoadTriditions();
+        }
         
         private void LoadTriditions()
         {
@@ -31,7 +36,7 @@ namespace ScheduleGenerator.Traditions
                     File.Exists(pythonPath))
                 {
                     Traditions.Add(
-                        new PythonTradition($"{directory}/markup.stack", $"{directory}/main.py")
+                        new PythonTradition($"{directory}/markup.stack", $"{directory}/main.py", Traditions.Count)
                     );
                 }
                     
