@@ -1,3 +1,5 @@
 {
-  "api-url": "localhost:8000"
+  "api-url": "http://localhost:8000/",
+  "api-get-traditions": "get_top_traditions",
+  "api-get-tradition": "get_tradition"
 }

@@ -6,7 +6,11 @@
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+    <Compile Remove="Traditions\TraditionOnlyInfo.cs" />
     <None Remove=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Traditions\TraditionOnlyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Accord.Genetic" Version="3.8.2-alpha" />
@@ -30,9 +34,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Traditions\Freedom of Graphics\markup.stack">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

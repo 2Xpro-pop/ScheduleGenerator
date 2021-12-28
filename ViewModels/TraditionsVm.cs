@@ -11,6 +11,7 @@ using ScheduleGenerator.Traditions;
 
 namespace ScheduleGenerator.ViewModels
 {
+    using Traditions;
     public class TraditionsVm : ViewModelBase, IRoutableViewModel
     {
         public IScreen HostScreen { get; }
@@ -19,6 +20,7 @@ namespace ScheduleGenerator.ViewModels
         public TraditionsVm(IScreen screen)
         {
             HostScreen = screen;
+            
         }
 
         public void Edit(ITradition tradition)
@@ -37,5 +39,11 @@ namespace ScheduleGenerator.ViewModels
         {
             get;
         } = App.Instance.AssemblyTraditions.Traditions;
+
+        public List<ITradition> Recomendation 
+        {
+            get;
+            private set;
+        } 
     }
 }
