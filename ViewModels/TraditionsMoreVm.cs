@@ -46,6 +46,7 @@ namespace ScheduleGenerator.ViewModels
                     () => screen.Router.NavigateBack.Execute()
                 );
             }
+            
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Reactive;
@@ -24,6 +24,13 @@ namespace ScheduleGenerator.ViewModels
         public void Edit(ITradition tradition)
         {
             HostScreen.Router.Navigate.Execute(new TraditionsMoreVm(HostScreen, tradition));
+        }
+
+        public void Refresh()
+        {
+            Task.Run(
+                () => App.Instance.AssemblyTraditions.Refresh()
+            );
         }
 
         public ObservableCollection<ITradition> MetaInfos 

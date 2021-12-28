@@ -8,7 +8,7 @@
 	<ScrollViewer>
 		<StackPanel>
 			<DockPanel Margin="10 10 10 10">
-				<Button DockPanel.Dock="Right" >
+				<Button DockPanel.Dock="Right" Command="{Binding Refresh}">
 				    <Path Classes="FIcon" Data="{StaticResource refresh}"/>
 			    </Button>
 				<TextBlock Classes="h1" Margin="0" Text="Традиции" DockPanel.Dock="Left"/>

@@ -13,8 +13,6 @@ namespace ScheduleGenerator.ViewModels
     {
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; } = "Options";
-        
-
         public OptionsViewModel(IScreen screen)
         {
             HostScreen = screen;

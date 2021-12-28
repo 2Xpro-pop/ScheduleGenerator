@@ -38,9 +38,9 @@ namespace ScheduleGenerator
         public bool ContainsKey(string key) => _settings.ContainsKey(key);
         public bool ContainsValue(object value) => _settings.ContainsValue(value);
 
-        public async void Save()
+        public void Save()
         {
-            await File.WriteAllTextAsync("settings.json", JsonConvert.SerializeObject(_settings, Formatting.Indented));
+            File.WriteAllText("settings.json", JsonConvert.SerializeObject(_settings, Formatting.Indented));
         }
 
         ~Settings()

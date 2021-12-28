@@ -24,7 +24,4 @@ def observe_open_doc(element, viewModel):
     element.Click += lambda x,y : click_open_doc(viewModel) 
 
 def click_open_doc(viewModel):
-    loop = asyncio.get_event_loop()
-    results = loop.run_until_complete(asyncio.gather(*tasks))
-    loop.close()
     webbrowser.open("https://github.com/2Xpro-pop/ScheduleGenerator/tree/master#%D1%82%D1%80%D0%B0%D0%B4%D0%B8%D1%86%D0%B8%D0%B8")

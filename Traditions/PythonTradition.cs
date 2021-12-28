@@ -48,6 +48,7 @@ namespace ScheduleGenerator.Traditions
             PythonScope = python.ExecuteFile(_pythonPath, PythonScope);
 
             var doc = BaseMarkup.Document;
+            doc.Elements.Clear();
             doc.Load(_markupPath);
 
             Markup = doc.Elements.Cast<BaseMarkup>();

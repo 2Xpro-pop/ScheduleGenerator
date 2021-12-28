@@ -28,6 +28,7 @@ namespace ScheduleGenerator
             using(StreamWriter file = File.CreateText("data.json"))
             {
                 var serializer = new JsonSerializer();
+                serializer.Formatting = Formatting.Indented;
                 serializer.Serialize(file, new DataProvider()
                 {
                     Groups = groups,

@@ -22,6 +22,8 @@ namespace ScheduleGenerator.Traditions
         }       
         private void LoadTriditions()
         {
+            Traditions.Clear();
+            ErrorTraditions.Clear();
             var directories = Directory.GetDirectories("Traditions");
             foreach(var directory in directories)
             {
@@ -40,6 +42,12 @@ namespace ScheduleGenerator.Traditions
                     
             }
         }
+
+        private async void GetTraditionsFromWeb()
+        {
+            
+        }
+
         //Возвращает значение от 0 до 1
         public double CountPoints(ushort[] schedule)
         {

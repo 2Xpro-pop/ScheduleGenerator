@@ -37,32 +37,12 @@ namespace ScheduleGenerator
         public override void Initialize()
         {
             Instance = this;
-            if(File.Exists("data.json"))
-            {
-                var data = DataProvider.Load();
-                foreach(var group in data.Groups)
-                {
-                    Groups.Add(group);
-                }
-                foreach(var teacher in data.Teachers)
-                {
-                    teacher.Conflicts = new List<int>();
-                    Teachers.Add(teacher);
-                }
-                foreach(var lesson in data.Lessons)
-                {
-                    Lessons.Add(lesson);
-                }
-                foreach(var keyValue in data.Schedule)
-                {
-                    Schedule.Add(keyValue.Key, keyValue.Value);
-                }
-            }
             AvaloniaXamlLoader.Load(this);
         }
 
         public void Save()
         {
+            Settings.Save();
             DataProvider.Save(Groups.ToList<Group>(), Teachers.ToList<Teacher>(), Lessons.ToList<string>(), Schedule);
         }
 
@@ -70,11 +50,12 @@ namespace ScheduleGenerator
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel(),
-                };
-                MainWindowInstance = desktop.MainWindow;
+                // desktop.MainWindow = new MainWindow
+                // {
+                //     DataContext = new MainWindowViewModel(),
+                // };
+                // MainWindowInstance = desktop.MainWindow;
+                desktop.MainWindow = new Windows.Startup();
             }
 
             base.OnFrameworkInitializationCompleted();
@@ -93,10 +74,10 @@ namespace ScheduleGenerator
             get;
         } =new();
 
-        public AssemblyTraditions AssemblyTraditions { get; } = new AssemblyTraditions();
+        public AssemblyTraditions AssemblyTraditions { get; set; }
 
         // Только для традиций!
-        public Settings Settings { get; } = new Settings();
+        public Settings Settings { get; set; } 
 
         public Dictionary<string, Week<string>[]>? Schedule 
         { 
