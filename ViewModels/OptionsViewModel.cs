@@ -17,7 +17,6 @@ namespace ScheduleGenerator.ViewModels
 
         public OptionsViewModel(IScreen screen)
         {
-            screen.Router.NavigationStack.Clear();
             HostScreen = screen;
             RemoveLessonCommand = ReactiveCommand.Create(RemoveLesson);
         }
@@ -157,9 +156,11 @@ namespace ScheduleGenerator.ViewModels
             Lessons.Add(InputLesson.Trim());
         }
 
-        public void Generate()
+        public async void Generate()
         {
-            HostScreen.Router.Navigate.Execute( new GenerationVm(HostScreen));
+            var window = new Windows.GenerationView();
+            window.ViewModel = new GenerationVm();
+            await window.ShowDialog(App.MainWindowInstance);
         }
 
     }

@@ -19,7 +19,6 @@ namespace ScheduleGenerator.ViewModels
         public TraditionsVm(IScreen screen)
         {
             HostScreen = screen;
-            HostScreen.Router.NavigationStack.Clear();
         }
 
         public void Edit(ITradition tradition)

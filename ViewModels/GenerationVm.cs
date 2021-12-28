@@ -12,10 +12,8 @@ using Accord.Genetic;
 namespace ScheduleGenerator.ViewModels
 {
     using Genetic;
-    public class GenerationVm: ViewModelBase, IRoutableViewModel
+    public class GenerationVm: ViewModelBase
     {
-        public IScreen HostScreen { get; }
-        public string UrlPathSegment { get; } = "Generation";
         public Generator Generator { get; }
         public BackgroundWorker BackgroundWorker { get; set;}
         public double Progress 
@@ -34,9 +32,8 @@ namespace ScheduleGenerator.ViewModels
 
         private bool _apply = false;
 
-        public GenerationVm(IScreen screen)
+        public GenerationVm()
         {
-            HostScreen = screen;
             BackgroundWorker = new();
             BackgroundWorker.WorkerSupportsCancellation = true;
             BackgroundWorker.DoWork += StartGeneration;
@@ -78,32 +75,18 @@ namespace ScheduleGenerator.ViewModels
                     
                     BuildGeneration(span.Slice(i*48, 48), shedule[name]);
                 }
-                BackgroundWorker.RunWorkerCompleted += (a,b) =>
-                {
-                    HostScreen.Router.NavigateBack.Execute();
-                };
             }
             
         }
 
         public void Cancel()
         {
-            BackgroundWorker.RunWorkerCompleted += (a,b) =>
-            {
-                HostScreen.Router.NavigateBack.Execute();
-                System.Diagnostics.Trace.WriteLine(Progress);
-            };
             BackgroundWorker.CancelAsync();
         }
 
         public void Apply()
         {
             _apply = true;
-            BackgroundWorker.RunWorkerCompleted += (a,b) =>
-            {
-                HostScreen.Router.NavigateBack.Execute();
-                System.Diagnostics.Trace.WriteLine(Progress);
-            };
             BackgroundWorker.CancelAsync();
         }
 

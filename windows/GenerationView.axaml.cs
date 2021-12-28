@@ -7,9 +7,9 @@ using Avalonia.Controls.Primitives;
 using System.ComponentModel;
 using System;
 
-namespace ScheduleGenerator.Views
+namespace ScheduleGenerator.Windows
 {
-    public partial class GenerationView : ReactiveUserControl<ViewModels.GenerationVm>
+    public partial class GenerationView : ReactiveWindow<ViewModels.GenerationVm>
     {
         
         public GenerationView()
@@ -17,19 +17,23 @@ namespace ScheduleGenerator.Views
             InitializeComponent();
         }
 
-        public override void EndInit()
-        {
-            base.EndInit();
-        }
-
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            ViewModel.BackgroundWorker.Dispose();
+        }
+
         protected override void OnDataContextChanged(EventArgs e)
         {
             ViewModel.BackgroundWorker.RunWorkerAsync();
+            ViewModel.BackgroundWorker.RunWorkerCompleted += (a,b) =>
+            {
+                Close(true);
+            };
         }
         
     }

@@ -1,0 +1,39 @@
+<Window
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ScheduleGenerator.Windows.GenerationView"
+		TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+		Width="270">
+		<Panel HorizontalAlignment="Center">
+      <ExperimentalAcrylicBorder IsHitTestVisible="False">
+          <ExperimentalAcrylicBorder.Material>
+              <ExperimentalAcrylicMaterial
+                  BackgroundSource="Digger"
+                  TintColor="Black"
+                  TintOpacity="1"
+                  MaterialOpacity="0.65" />
+          </ExperimentalAcrylicBorder.Material>
+      </ExperimentalAcrylicBorder>
+	    <StackPanel>
+			<StackPanel Margin="25">
+				<TextBlock Classes="h1" TextAlignment="Center" Text="Генерация идет.... Ждите !"/>
+				<Viewbox Width="220" Height="220">
+				    <Path Data="{StaticResource progress}" Fill="White"/>
+				</Viewbox>
+				<TextBlock Classes="h2" TextAlignment="Center" Text="Или отмените, или примите недостатки"/>
+				<StackPanel Classes="Input" HorizontalAlignment="Center" Spacing="10" Margin="0 20 0 0">
+					<Button Classes="Remove" Content="Отменить" Command="{Binding Cancel}"/>
+					<Button Classes="Remove" Content="Принять"  Command="{Binding Apply}"/>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+		</Panel>
+</Window>

@@ -19,7 +19,7 @@ namespace ScheduleGenerator
     public class App : Application
     {
         public static App Instance { get; private set; }
-        private static Window _mainWindow;
+        public static Window MainWindowInstance {get; private set;}
 
         public static async void ErrorMessageBox(string title, string text, Action? onDialogEnd = null)
         {
@@ -30,7 +30,7 @@ namespace ScheduleGenerator
                 Title = title,
             };
             SystemSounds.Beep.Play();
-            await error.ShowDialog(_mainWindow);
+            await error.ShowDialog(MainWindowInstance);
             onDialogEnd?.Invoke();
         }
 
@@ -74,7 +74,7 @@ namespace ScheduleGenerator
                 {
                     DataContext = new MainWindowViewModel(),
                 };
-                _mainWindow = desktop.MainWindow;
+                MainWindowInstance = desktop.MainWindow;
             }
 
             base.OnFrameworkInitializationCompleted();
