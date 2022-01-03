@@ -11,6 +11,7 @@
         CanResize="False"
         WindowStartupLocation="CenterScreen"
         Width="420"
-        Height="270">
+        Height="270"
+        Icon="/Assets/logo.ico">
   <Image Source="/Assets/splash.png"/>
 </Window>

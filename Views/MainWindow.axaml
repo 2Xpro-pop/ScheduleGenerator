@@ -6,7 +6,7 @@
         xmlns:rxui="using:Avalonia.ReactiveUI"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ScheduleGenerator.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/logo.ico"
         Title="ScheduleGenerator"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaTitleBarHeightHint="50"

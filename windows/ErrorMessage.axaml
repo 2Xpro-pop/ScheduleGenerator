@@ -12,7 +12,8 @@
         CanResize="False"
         Width="450"
         Height="180"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Icon="/Assets/logo.ico">
   <Panel>
       <ExperimentalAcrylicBorder IsHitTestVisible="False">
           <ExperimentalAcrylicBorder.Material>

@@ -30,8 +30,6 @@ namespace ScheduleGenerator.Traditions
                 Trace.WriteLine(directory);
                 var markupPath = Path.Combine($"{directory}", "markup.stack");
                 var pythonPath = Path.Combine($"{directory}", "main.py");
-                Trace.WriteLine(File.Exists(markupPath));
-                Trace.WriteLine(File.Exists(pythonPath));
                 if (File.Exists(markupPath) && 
                     File.Exists(pythonPath))
                 {
@@ -41,11 +39,7 @@ namespace ScheduleGenerator.Traditions
                 }
                     
             }
-        }
-
-        private async void GetTraditionsFromWeb()
-        {
-            
+            Trace.WriteLine("End");
         }
 
         //Возвращает значение от 0 до 1

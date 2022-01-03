@@ -32,16 +32,24 @@ namespace ScheduleGenerator.Traditions
         public static IEnumerable<ITradition>? GetBestsTraditions(IList<string> installed)
         {
             var settings = App.Instance.Settings;
-            var request = WebRequest.Create($"{settings["api-url"]}{settings["api-get-traditions"]}");
-            var response = request.GetResponse();
-            using(var stream = response.GetResponseStream())
+            
+            try
             {
-                using(var reader = new StreamReader(stream))
+                var request = WebRequest.Create($"{settings["api-url"]}{settings["api-get-traditions"]}");
+                var response = request.GetResponse();
+                using(var stream = response.GetResponseStream())
                 {
-                    string text = reader.ReadToEnd();
-                    var arr = JsonConvert.DeserializeObject<TraditionOnlyInfo[]>(text);
-                    return arr.Cast<ITradition>().Where(info => !installed.Contains(info.Name));
+                    using(var reader = new StreamReader(stream))
+                    {
+                        string text = reader.ReadToEnd();
+                        var arr = JsonConvert.DeserializeObject<TraditionOnlyInfo[]>(text);
+                        return arr.Cast<ITradition>().Where(info => !installed.Contains(info.Name));
+                    }
                 }
+            }
+            catch (WebException exc)
+            {
+                return Array.Empty<ITradition>();
             }
         }
 

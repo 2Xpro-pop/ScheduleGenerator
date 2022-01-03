@@ -66,11 +66,12 @@ namespace ScheduleGenerator.ViewModels
 
         public void Refresh()
         {
+            Recomendation = null;
             Task.Run(
                 () => 
                 {
                     App.Instance.AssemblyTraditions.Refresh();
-                    TraditionOnlyInfo.GetBestsTraditions(MetaInfos.Select(f => f.Name).ToList());
+                    Recomendation = TraditionOnlyInfo.GetBestsTraditions(MetaInfos.Select(f => f.Name).ToList());
                 }
             );
         }
