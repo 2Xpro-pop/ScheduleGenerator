@@ -19,7 +19,7 @@ namespace ScheduleGenerator
     public class App : Application
     {
         public static App Instance { get; private set; }
-        public static Window MainWindowInstance {get; private set;}
+        public static Window MainWindowInstance {get; set;}
 
         public static async void ErrorMessageBox(string title, string text, Action? onDialogEnd = null)
         {

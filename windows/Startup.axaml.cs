@@ -29,11 +29,12 @@ namespace ScheduleGenerator.Windows
         protected override void OnClosed(System.EventArgs e)
         {
             base.OnClosed(e);
+            App.MainWindowInstance = new Views.MainWindow()
+            {
+                ViewModel = new(),
+            };
             App.Current.Run(
-                new Views.MainWindow()
-                {
-                    ViewModel = new(),
-                }
+                App.MainWindowInstance
             );
         }
 

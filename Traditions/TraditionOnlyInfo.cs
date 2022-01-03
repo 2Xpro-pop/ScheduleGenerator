@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
+using System.Linq;
+using System.Diagnostics;
 using System.Collections.Generic;
 
 using Microsoft.Scripting.Hosting;
@@ -28,16 +29,18 @@ namespace ScheduleGenerator.Traditions
             throw new NotSupportedException();
         }
 
-        public static List<ITradition>? GetBestsTraditions()
+        public static IEnumerable<ITradition>? GetBestsTraditions(IList<string> installed)
         {
             var settings = App.Instance.Settings;
-            var request = WebRequest.Create($"{settings["api-url"]}/{settings["api-get-traditions"]}");
+            var request = WebRequest.Create($"{settings["api-url"]}{settings["api-get-traditions"]}");
             var response = request.GetResponse();
             using(var stream = response.GetResponseStream())
             {
                 using(var reader = new StreamReader(stream))
                 {
-                    return JsonConvert.DeserializeObject<List<ITradition>>(reader.ReadToEnd());
+                    string text = reader.ReadToEnd();
+                    var arr = JsonConvert.DeserializeObject<TraditionOnlyInfo[]>(text);
+                    return arr.Cast<ITradition>().Where(info => !installed.Contains(info.Name));
                 }
             }
         }

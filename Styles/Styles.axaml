@@ -139,7 +139,9 @@
 					<DockPanel LastChildFill="true">
 						<TextBlock Classes="h2" Text="{Binding Name}" DockPanel.Dock="Top"/>
 						<TextBlock Text="{Binding Description}" Margin="0 0 0 20" DockPanel.Dock="Top"/>
-						<Button Name="IconButton" Command="{Binding $parent[ItemsControl].DataContext.Edit}"
+						<Button Name="IconButton" 
+						   IsEnabled="{Binding $parent[ItemsControl].DataContext.CanDownload}" 
+						   Command="{Binding $parent[ItemsControl].DataContext.Install}"
                            CommandParameter="{Binding .}" DockPanel.Dock="Top">
 							<Path Classes="FIcon" Data="{StaticResource download}"/>
 						</Button>

@@ -3,14 +3,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-    <Compile Remove="Traditions\TraditionOnlyInfo.cs" />
     <None Remove=".gitignore" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Traditions\TraditionOnlyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Accord.Genetic" Version="3.8.2-alpha" />

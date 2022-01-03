@@ -19,7 +19,7 @@
 					<ItemsControl Classes="TraditionEdit" Items="{Binding MetaInfos}"/>
 				</TabItem>
 				<TabItem Header="Скачать">
-					<ItemsControl Classes="TraditionDownload" Items="{Binding MetaInfos}"/>
+					<ItemsControl Classes="TraditionDownload" Items="{Binding Recomendation}"/>
 				</TabItem>
 			</TabControl>
 		</StackPanel>
