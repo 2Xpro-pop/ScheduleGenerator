@@ -13,5 +13,16 @@
         Width="420"
         Height="270"
         Icon="/Assets/logo.ico">
-  <Image Source="/Assets/splash.png"/>
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+        <ExperimentalAcrylicBorder.Material>
+          <ExperimentalAcrylicMaterial
+                 BackgroundSource="Digger"
+                 TintColor="Black"
+                 TintOpacity="1"
+                 MaterialOpacity="0.95" />
+        </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Image Source="/Assets/splash.png"/>
+  </Panel>
 </Window>

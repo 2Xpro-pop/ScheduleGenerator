@@ -11,7 +11,8 @@
         ExtendClientAreaChromeHints="NoChrome"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
-		Width="270">
+		Width="270"
+		Icon="/Assets/logo.ico">
 		<Panel HorizontalAlignment="Center">
       <ExperimentalAcrylicBorder IsHitTestVisible="False">
           <ExperimentalAcrylicBorder.Material>

@@ -4,5 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ScheduleGenerator.Controls.EditableList">
-  Welcome to Avalonia!
+  <StackPanel>
+
+  <ListBox Classes="Options" 
+           Items="{Binding Items}"
+           SelectionChanged="SelectedChange"
+           >
+    <ListBox.ItemTemplate>
+      <DataTemplate>
+        <TextBlock DoubleTapped="OnDoubleTapped" Text="{Binding Name}"/>
+      </DataTemplate>
+    </ListBox.ItemTemplate> 
+
+  </ListBox>
+
+  <StackPanel Classes="Option">
+
+    <Button Command="{Binding AddItemCommand}">
+      <StackPanel Orientation="Horizontal">
+        <Path Data="{StaticResource add}" Fill="White" Margin="3" Height="24"/>
+        <TextBlock Text="Добавить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+      </StackPanel>
+    </Button>
+
+    <Button Command="{Binding EditItemCommand}" IsEnabled="{Binding CanEditOrRemove}">
+      <StackPanel Orientation="Horizontal">
+        <Path Data="{StaticResource edit}" Fill="White" Margin="3" Height="24"/>
+        <TextBlock Text="Изменить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+      </StackPanel>
+    </Button>
+
+      <Button Classes="Remove" Command="{Binding RemoveItemCommand}" IsEnabled="{Binding CanEditOrRemove}" >
+      <StackPanel Orientation="Horizontal">
+         <Path Data="{StaticResource remove}" Fill="White" Margin="3" Height="24"/>
+        <TextBlock Text="Удалить" VerticalAlignment="Center" Margin="3" TextAlignment="Center"/>
+      </StackPanel>
+    </Button>
+
+  </StackPanel>
+
+  </StackPanel>
 </UserControl>
